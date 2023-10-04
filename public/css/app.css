@@ -1,5 +1,5 @@
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Open Sans'
 }
 
 .navbar-nav li.nav-item {
@@ -11,7 +11,7 @@
 }
 
 body {
-    background: linear-gradient(to bottom, #005994, #003e6b);
+    background-color: #00538f;
     color: #ffffff;
     height: 100%;
 }
