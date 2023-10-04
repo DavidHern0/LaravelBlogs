@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::where('user_id', auth()->id())->latest()->paginate(3);
+        $blogs = Blog::where('user_id', auth()->id())->latest()->paginate(5);
         return view('home.index', compact('blogs'));
     }
 }
