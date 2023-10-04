@@ -10,6 +10,8 @@
 <body>
     <header>
         <h1><a href="/">LaravelBlogs</a></h1>
+        <a href="{{ route('login.index') }}">Log In</a>
+        <a href="{{ route('register.index') }}">Register</a>
     </header>
     <main>
         @yield('content')
