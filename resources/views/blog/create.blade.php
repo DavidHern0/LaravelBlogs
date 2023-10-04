@@ -1,12 +1,12 @@
 @extends('layouts.home')
 
-@section('title', __('Blog_create'))
+@section('title', __('Create blog'))
 
 @section('content')
 <div class="container">
     <form method="POST" action="{{ route('blog.store') }}" class="mt-5">
         @csrf
-        <h1 class="mb-4">{{ __('Blog_create') }}</h1>
+        <h1 class="mb-4">{{ __('Create blog') }}</h1>
         <div class="form-group">
             <label for="title">{{ __('Title') }}:</label>
             <input type="text" name="title" id="title" class="form-control" placeholder="{{ __('Title') }}" required>

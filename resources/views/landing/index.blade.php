@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', __('web.title'))
+@section('title', __('LaravelBlogs'))
 
 @section('content') 
-<h1>LaravelBlogs</h1>
+<h1>{{ __('LaravelBlogs') }}</h1>
 @endsection

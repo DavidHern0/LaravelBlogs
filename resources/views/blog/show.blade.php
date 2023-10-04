@@ -16,7 +16,7 @@
             <p>{{ $blog->content }}</p>
             
             @if($blog->user_id === auth()->id())
-                <a href="{{ route('blog.edit', ['id' => $blog->id]) }}">Edit</a>
+                <a href="{{ route('blog.edit', ['id' => $blog->id]) }}">{{ __('Edit') }}</a>
             @endif
         </div>
     </div>

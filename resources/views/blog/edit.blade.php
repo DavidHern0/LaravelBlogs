@@ -1,13 +1,13 @@
 @extends('layouts.home')
 
-@section('title', 'Blog_edit')
+@section('title', __('Edit').': '. $blog->title)
 
 @section('content')
 <div class="container">
     <form method="POST" action="{{ route('blog.update', ['id' => $blog->id]) }}">
         @csrf
         @method('PUT')
-        <h1 class="mb-4">{{ __('Blog_edit') }}</h1>
+        <h1 class="mb-4">{{ __('Edit').': '. $blog->title }}</h1>
 
         <div class="form-group">
             <label for="title">{{ __('Title') }}:</label>
@@ -24,7 +24,7 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <button type="submit" class="btn btn-primary">{{ __('Save changes') }}</button>
     </form>
 </div>
 @endsection
