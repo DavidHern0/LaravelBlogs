@@ -30,7 +30,7 @@
                         </div>
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">{{ __('Save changes') }}</button>
+                    <button type="submit" class="button button-show">{{ __('Save changes') }}</button>
                 </div>
                 </form>
             </div>

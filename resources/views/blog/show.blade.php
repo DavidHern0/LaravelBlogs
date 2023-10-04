@@ -19,7 +19,7 @@
                 </div>
                 @if($blog->user_id === auth()->id())
                     <div class="card-footer">
-                        <a href="{{ route('blog.edit', ['id' => $blog->id]) }}" class="btn btn-warning">{{ __('Edit') }}</a>
+                        <a href="{{ route('blog.edit', ['id' => $blog->id]) }}" class="button button-show">{{ __('Edit') }}</a>
                     </div>
                 @endif
             </div>

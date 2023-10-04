@@ -26,7 +26,7 @@
                             @enderror
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary mt-4">{{ __('Create') }}</button>
+                            <button type="submit" class="button button-show mt-4">{{ __('Create') }}</button>
                         </div>
                     </form>
                 </div>
