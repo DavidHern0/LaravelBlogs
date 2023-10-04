@@ -11,8 +11,11 @@
 
 <body>
     <header class="navbar navbar-expand-lg navbar-light bg-light">
-        <h1 class="mx-auto"><a class="navbar-brand" href="/">LaravelBlogs</a></h1>
+        <h1 class="mx-auto"><a class="navbar-brand" href="/home">LaravelBlogs</a></h1>
         <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('blog.index') }}">My Blogs</a>
+            </li>
             <li class="nav-item">    
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf

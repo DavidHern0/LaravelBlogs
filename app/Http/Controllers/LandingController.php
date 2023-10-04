@@ -13,7 +13,7 @@ class LandingController extends Controller
         try {
             return view('landing.index');
         } catch(\Exception $e) {
-            Log::info('The home page failed to load.', ["error" => $e->getMessage()]);
+            Log::info('The landing page failed to load.', ["error" => $e->getMessage()]);
         }
     }
 }

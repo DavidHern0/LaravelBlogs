@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,16 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::prefix('blog')->group(function () {
+    Route::get('/', [BlogController::class, 'index'])->name('blog.index');
+    Route::get('/create', [BlogController::class, 'create'])->name('blog.create');
+    Route::post('/store', [BlogController::class, 'store'])->name('blog.store');
+    Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
+    Route::put('/{id}/update', [BlogController::class, 'update'])->name('blog.update');
+    Route::get('/{id}', [BlogController::class, 'show'])->name('blog.show');
+    Route::delete('/{id}',[BlogController::class, 'destroy'])->name('blog.destroy');
+});
+
 
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
