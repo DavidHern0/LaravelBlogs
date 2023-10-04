@@ -18,7 +18,6 @@ use App\Http\Controllers\BlogController;
 |
 */
 Route::prefix('blog')->group(function () {
-    Route::get('/', [BlogController::class, 'index'])->name('blog.index');
     Route::get('/create', [BlogController::class, 'create'])->name('blog.create');
     Route::post('/store', [BlogController::class, 'store'])->name('blog.store');
     Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');

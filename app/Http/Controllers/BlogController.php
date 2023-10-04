@@ -8,14 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 
 class BlogController extends Controller
-{ 
-
-    public function index()
-    {
-        $blogs = Blog::where('user_id', auth()->id())->latest()->paginate(3);
-        return view('blog.index', compact('blogs'));
-    }
-
+{
     public function create()
     {
         return view('blog.create');
@@ -78,6 +71,6 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         $blog->delete();
-        return redirect(route('blog.index'))->with('success', 'Blog deleted successfully.');
+        return redirect(route('home.index'))->with('success', 'Blog deleted successfully.');
     }
 }

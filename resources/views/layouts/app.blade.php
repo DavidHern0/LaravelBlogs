@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +12,24 @@
     <header class="navbar navbar-expand-lg navbar-light bg-light">
         <h1 class="mx-auto"><a class="navbar-brand" href="/">LaravelBlogs</a></h1>
         <ul class="navbar-nav mx-auto">
+        @if (auth()->check())
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('home.index') }}">{{__('My blogs')}}</a>
+            </li>
+            <li class="nav-item">    
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="session-button" type="submit">{{__('Logout')}}</button>
+                </form>
+            </li>
+        @else
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('login.index') }}">{{__('Login')}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('register.index') }}">{{__('Register')}}</a>
             </li>
+        @endif
         </ul>
     </header>
     

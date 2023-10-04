@@ -10,12 +10,8 @@ use App\Models\Blog;
 class HomeController extends Controller
 {
     public function index()
-    {  
-        try {
-            $blogs = Blog::latest()->paginate(3);
-            return view('home.index', compact('blogs'));
-        } catch(\Exception $e) {
-            Log::info('The home page failed to load.', ["error" => $e->getMessage()]);
-        }
+    {
+        $blogs = Blog::where('user_id', auth()->id())->latest()->paginate(3);
+        return view('home.index', compact('blogs'));
     }
 }
