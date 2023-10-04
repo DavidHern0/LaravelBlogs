@@ -10,8 +10,11 @@
 <body>
     <header>
         <h1><a href="/">LaravelBlogs</a></h1>
-        <a href="{{ route('login.index') }}">Log In</a>
-        <a href="{{ route('register.index') }}">Register</a>
+        
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button class="session-button" type="submit">{{__('Log Out')}}</button>
+        </form>
     </header>
     <main>
         @yield('content')
