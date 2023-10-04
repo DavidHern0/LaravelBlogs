@@ -14,6 +14,8 @@
     "Content": "Contenido",
     "Create": "Crear",
     "Create blog": "Crear blog",
+    "No results were found": "No se ha encontrado ningún resultado",
+    "Latest blogs": "Últimos blogs",
 
     "(and :count more error)": "(y :count error más)",
     "(and :count more errors)": "(y :count errores más)",
