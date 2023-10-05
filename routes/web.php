@@ -17,13 +17,14 @@ use App\Http\Controllers\BlogController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::prefix('blog')->group(function () {
     Route::get('/create', [BlogController::class, 'create'])->name('blog.create');
     Route::post('/store', [BlogController::class, 'store'])->name('blog.store');
     Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
     Route::put('/{id}/update', [BlogController::class, 'update'])->name('blog.update');
     Route::get('/{id}', [BlogController::class, 'show'])->name('blog.show');
-    Route::delete('/{id}',[BlogController::class, 'destroy'])->name('blog.destroy');
+    Route::delete('/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
 });
 
 

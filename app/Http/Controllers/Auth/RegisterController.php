@@ -12,15 +12,11 @@ use App\Models\User;
 class RegisterController extends Controller
 {
     public function index()
-    {  
-        try {
-            if (auth()->user()) {
-                return redirect()->route('home.index');
-            } else {
-                return view('auth.register.index');
-            }
-        } catch (\Exception $e) {
-            Log::info('The register page failed to load.', ["error" => $e->getMessage()]);
+    {
+        if (auth()->user()) {
+            return redirect()->route('home.index');
+        } else {
+            return view('auth.register.index');
         }
     }
 
@@ -45,10 +41,10 @@ class RegisterController extends Controller
                 'email' => $validator->validated()['email'],
                 'password' => Hash::make($validator->validated()['password']),
             ]);
-            
+
             return redirect()->route('login.index');
         } catch (\Exception $e) {
-            Log::info('The registration failed.', ["error" => $e->getMessage()]);
+            Log::info(__('The registration failed.'), ["error" => $e->getMessage()]);
         }
     }
 }
