@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,35 +10,40 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
+
 <body>
     <header class="navbar navbar-expand navbar-dark d-flex justify-content-around align-items-baseline">
         <h1 class=""><a class="navbar-brand text-decoration-none" href="/">{{ __('LaravelBlogs') }}</a></h1>
         <ul class="navbar-nav">
             @if (auth()->check())
                 <li class="nav-item dropdown">
-                    <a class="nav-link btn btn-link text-decoration-none dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link btn btn-link text-decoration-none dropdown-toggle" href="#"
+                        id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
                         {{ auth()->user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('blog.create') }}">{{ __('Create new blog') }}</a>
-                        <a class="dropdown-item" href="{{ route('home.index') }}">{{__('My blogs')}}</a>
+                        <a class="dropdown-item" href="{{ route('home.index') }}">{{ __('My blogs') }}</a>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button class="dropdown-item" type="submit">{{__('Logout')}}</button>
+                            <button class="dropdown-item" type="submit">{{ __('Logout') }}</button>
                         </form>
                     </div>
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link btn btn-link text-decoration-none" href="{{ route('login.index') }}">{{__('Login')}}</a>
+                    <a class="nav-link btn btn-link text-decoration-none"
+                        href="{{ route('login.index') }}">{{ __('Login') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-link text-decoration-none" href="{{ route('register.index') }}">{{__('Register')}}</a>
+                    <a class="nav-link btn btn-link text-decoration-none"
+                        href="{{ route('register.index') }}">{{ __('Register') }}</a>
                 </li>
             @endif
         </ul>
     </header>
-    
+
     <main class="container mt-4">
         @yield('content')
     </main>
@@ -48,4 +54,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+
 </html>

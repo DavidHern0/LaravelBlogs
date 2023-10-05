@@ -12,7 +12,7 @@ use App\Models\User;
 class RegisterController extends Controller
 {
     public function index()
-    {  
+    {
         try {
             if (auth()->user()) {
                 return redirect()->route('home.index');
@@ -45,7 +45,7 @@ class RegisterController extends Controller
                 'email' => $validator->validated()['email'],
                 'password' => Hash::make($validator->validated()['password']),
             ]);
-            
+
             return redirect()->route('login.index');
         } catch (\Exception $e) {
             Log::info('The registration failed.', ["error" => $e->getMessage()]);

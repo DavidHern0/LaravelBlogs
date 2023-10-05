@@ -48,7 +48,8 @@ body {
     color: #001b2c;
 }
 
-.active>.page-link, .page-link.active {
+.active>.page-link,
+.page-link.active {
     background-color: #001b2c;
     border-color: #001b2c;
 }

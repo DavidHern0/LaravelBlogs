@@ -11,14 +11,14 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     public function index()
-    {  
+    {
         try {
             if (auth()->user()) {
                 return redirect()->route('home.index');
-            } else{
+            } else {
                 return view('auth.login.index');
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Log::info('The login page failed to load.', ["error" => $e->getMessage()]);
         }
     }
@@ -37,7 +37,7 @@ class LoginController extends Controller
             return back()->withErrors([
                 'email' => 'The email or password are wrong.',
             ]);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Log::info('The login page failed to load.', ["error" => $e->getMessage()]);
         }
     }
