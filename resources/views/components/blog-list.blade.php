@@ -12,7 +12,7 @@
                 <a href="{{ route('blog.show', ['id' => $blog->id]) }}" class="button button-show">{{ __('Read more') }}</a>
                 @if($blog->user_id === auth()->id())
                 <a href="{{ route('blog.edit', ['id' => $blog->id]) }}" class="button button-edit">{{ __('Edit') }}</a>
-                <form action="{{ route('blog.destroy', $blog->id) }}" method="POST">
+                <form action="{{ route('blog.destroy', $blog->id) }}" method="POST" onsubmit="return confirm(`{{__('Are you sure you want to delete this blog?')}}`)">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button button-delete">{{ __('Delete') }}</button>
