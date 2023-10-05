@@ -12,14 +12,10 @@ class LoginController extends Controller
 {
     public function index()
     {
-        try {
-            if (auth()->user()) {
-                return redirect()->route('home.index');
-            } else {
-                return view('auth.login.index');
-            }
-        } catch (\Exception $e) {
-            Log::info('The login page failed to load.', ["error" => $e->getMessage()]);
+        if (auth()->user()) {
+            return redirect()->route('home.index');
+        } else {
+            return view('auth.login.index');
         }
     }
 
@@ -35,21 +31,23 @@ class LoginController extends Controller
                 return redirect()->route('home.index');
             }
             return back()->withErrors([
-                'email' => 'The email or password are wrong.',
+                'email' => __('The credentials are wrong.'),
             ]);
         } catch (\Exception $e) {
-            Log::info('The login page failed to load.', ["error" => $e->getMessage()]);
+            Log::info(__('The login has failed.'), ["error" => $e->getMessage()]);
         }
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        try {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect('/');
+            return redirect('/');
+        } catch (\Exception $e) {
+            Log::info(__('The logout has failed.'), ["error" => $e->getMessage()]);
+        }
     }
 }

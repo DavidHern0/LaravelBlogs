@@ -24,6 +24,10 @@
     "You do not have permission to edit this blog post.": "No tienes permiso para editar este blog.",
     "Failed to create a blog post.": "Error al crear el blog.",
     "Failed to update a blog post.": "Failed to update a blog post.",
+    "The login has failed.": "El inicio de sesión ha fallado.",
+    "The logout has failed.": "La salida de sesión ha fallado.",
+    "The credentials are wrong.": "Las credenciales son incorrectas.",
+    "The registration failed.": "El registro ha fallado.",
 
     "(and :count more error)": "(y :count error más)",
     "(and :count more errors)": "(y :count errores más)",
