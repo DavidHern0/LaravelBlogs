@@ -13,7 +13,7 @@
 
 <body>
     <header class="navbar navbar-expand navbar-dark d-flex justify-content-around align-items-baseline">
-        <h1 class=""><a class="navbar-brand text-decoration-none" href="/">{{ __('LaravelBlogs') }}</a></h1>
+        <h1><a class="navbar-brand text-decoration-none" href="/">{{ __('LaravelBlogs') }}</a></h1>
         <ul class="navbar-nav">
             @if (auth()->check())
                 <li class="nav-item dropdown">
@@ -43,11 +43,18 @@
             @endif
         </ul>
     </header>
+    <nav class="navbar-expand d-flex justify-content-xl-center align-items-baseline mt-4">
+        <a class="button navbar-brand text-decoration-none mx-5" href="/">{{ __('Latest blogs') }}</a>
 
+        <a href="{{ route('blog.show', ['id' => $randomId]) }}"
+            class="button navbar-brand text-decoration-none mx-5">{{ __('See random blog') }}</a>
+
+        <a class="button navbar-brand text-decoration-none mx-5"
+            href="{{ route('home.index') }}">{{ __('My blogs') }}</a>
+    </nav>
     <main class="container mt-4">
         @yield('content')
     </main>
-
     <footer class="text-center mt-4">
         <p class="text-white">David Hernández Larrea &copy; {{ date('Y') }}</p>
     </footer>

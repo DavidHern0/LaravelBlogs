@@ -8,7 +8,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h1>{{ __('My blogs') }}</h1>
+                    <div class="mb-5">
+                        <h1 class="mb-4">{{ __('My blogs') }}</h1>
+                        <a class="button button-show" href="{{ route('blog.create') }}">{{ __('Create new blog') }}</a>
+                    </div>
                     <x-blog-list :blogs="$blogs" />
                 </div>
             </div>
