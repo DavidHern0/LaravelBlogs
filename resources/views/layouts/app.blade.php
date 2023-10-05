@@ -45,12 +45,14 @@
     </header>
     <nav class="navbar-expand d-flex justify-content-xl-center align-items-baseline mt-4">
         <a class="button navbar-brand text-decoration-none mx-5" href="/">{{ __('Latest blogs') }}</a>
-
-        <a href="{{ route('blog.show', ['id' => $randomId]) }}"
-            class="button navbar-brand text-decoration-none mx-5">{{ __('See random blog') }}</a>
-
+        @if ($randomId)
+            <a href="{{ route('blog.show', ['id' => $randomId]) }}"
+                class="button navbar-brand text-decoration-none mx-5">{{ __('See random blog') }}</a>
+        @endif
+        @auth
         <a class="button navbar-brand text-decoration-none mx-5"
             href="{{ route('home.index') }}">{{ __('My blogs') }}</a>
+        @endauth
     </nav>
     <main class="container mt-4">
         @yield('content')

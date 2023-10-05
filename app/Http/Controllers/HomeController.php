@@ -11,7 +11,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::where('user_id', auth()->id())->latest()->paginate(5);
-        return view('home.index', compact('blogs'));
+        if (auth()->user()) {
+            $blogs = Blog::where('user_id', auth()->id())->latest()->paginate(5);
+            return view('home.index', compact('blogs'));
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 }

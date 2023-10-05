@@ -23,6 +23,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
-        View::share('randomId', Blog::inRandomOrder()->first());
+
+        $randomBlog = Blog::inRandomOrder()->first();
+        if ($randomBlog) {
+            View::share('randomId', $randomBlog);
+        } else {
+            View::share('randomId', null);
+        }
     }
 }

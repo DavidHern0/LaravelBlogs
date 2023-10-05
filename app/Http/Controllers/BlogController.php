@@ -11,7 +11,11 @@ class BlogController extends Controller
 {
     public function create()
     {
-        return view('blog.create');
+        if (auth()->user()) {
+            return view('blog.create');
+        } else {
+            return redirect()->route('login.index');
+        }
     }
 
     public function edit($id)
@@ -26,7 +30,11 @@ class BlogController extends Controller
     public function show($id)
     {
         $blog = Blog::find($id);
-        return view('blog.show', compact('blog'));
+        if ($blog) {
+            return view('blog.show', compact('blog'));
+        } else {
+            abort(404, __('Blog not found.'));
+        }
     }
 
     public function store(Request $request)
