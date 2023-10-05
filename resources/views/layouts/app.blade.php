@@ -45,12 +45,14 @@
     </header>
     <nav class="navbar-expand d-flex justify-content-xl-center align-items-baseline mt-4">
         <a class="button navbar-brand text-decoration-none mx-5" href="/">{{ __('Latest blogs') }}</a>
-
-        <a href="{{ route('blog.show', ['id' => $randomId]) }}"
-            class="button navbar-brand text-decoration-none mx-5">{{ __('See random blog') }}</a>
-
+        @if ($randomId)
+            <a href="{{ route('blog.show', ['id' => $randomId]) }}"
+                class="button navbar-brand text-decoration-none mx-5">{{ __('See random blog') }}</a>
+        @endif
+        @auth
         <a class="button navbar-brand text-decoration-none mx-5"
             href="{{ route('home.index') }}">{{ __('My blogs') }}</a>
+        @endauth
     </nav>
     <main class="container mt-4">
         @yield('content')
@@ -59,6 +61,7 @@
         <p class="text-white">David Hernández Larrea &copy; {{ date('Y') }}</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 

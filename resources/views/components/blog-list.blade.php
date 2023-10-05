@@ -6,8 +6,9 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $blog->title }}</h5>
                 <h6 class="card-title text-muted">{{ $blog->user->name }} - {{ $blog->created_at->format('d/m/Y') }}</h6>
-                <p class="card-text">{{ substr($blog->content, 0, 200) }}{{ strlen($blog->content) > 200 ? '...' : '' }}
-                </p>
+                <p class="card-text">{!! strip_tags(substr($blog->content, 0, 200)) !!}
+                    {!! strlen($blog->content) > 200 ? '...' : '' !!}
+                </p>                
                 <div class="d-flex">
                     <a href="{{ route('blog.show', ['id' => $blog->id]) }}"
                         class="button button-show">{{ __('Read more') }}</a>

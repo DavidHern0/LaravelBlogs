@@ -12,11 +12,11 @@
                     </div>
                 @endif
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body px-5 py-5">
                         <h1 class="card-title">{{ $blog->title }}</h1>
                         <h3 class="card-subtitle mb-2 text-muted">{{ $blog->created_at->format('m/d/Y') }} -
                             {{ $blog->user->name }}</h3>
-                        <p class="card-text">{{ $blog->content }}</p>
+                        {!! $blog->content !!}
                     </div>
                     @if ($blog->user_id === auth()->id())
                         <div class="card-footer">
