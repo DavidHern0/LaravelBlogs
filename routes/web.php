@@ -26,6 +26,7 @@ Route::prefix('blog')->group(function () {
     Route::get('/{id}', [BlogController::class, 'show'])->name('blog.show');
     Route::delete('/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
 });
+Route::get('/search', [BlogController::class, 'search'])->name('blog.search');
 
 
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');

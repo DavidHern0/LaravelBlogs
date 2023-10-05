@@ -21,6 +21,8 @@
     "Blog updated successfully.": "Blog actualizado correctamente",
     "Are you sure you want to delete this blog?": "¿Estás seguro que deseas eliminar este blog?",
     "See random blog": "Ver blog aleatorio",
+    "Search...": "Buscar...",
+    "Search results for": "Resultados de búsqueda para",
 
     "You do not have permission to edit this blog post.": "No tienes permiso para editar este blog.",
     "Failed to create a blog post.": "Error al crear el blog.",

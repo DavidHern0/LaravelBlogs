@@ -14,6 +14,16 @@
 <body>
     <header class="navbar navbar-expand navbar-dark d-flex justify-content-around align-items-baseline">
         <h1><a class="navbar-brand text-decoration-none" href="/">{{ __('LaravelBlogs') }}</a></h1>
+        <form class="form-inline" action="{{ route('blog.search') }}" method="GET">
+            <div class="input-group">
+                <input class="form-control" type="search" placeholder={{__('Search...')}} aria-label={{__('Search...')}} name="search" id="search">
+                <div class="input-group-append">
+                    <button class="button-search" type="submit">
+                        <img src="../images/searching_icon.svg" width="35">
+                    </button>
+                </div>
+            </div>
+        </form>
         <ul class="navbar-nav">
             @if (auth()->check())
                 <li class="nav-item dropdown">
