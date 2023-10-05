@@ -25,7 +25,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="content">{{ __('Content') }}:</label>
-                                <textarea name="content" id="content" class="form-control" required>{{ old('content', $blog->content) }}</textarea>
+                                <textarea name="content" id="content" class="ckeditor form-control" required>{{ old('content', $blog->content) }}</textarea>
                                 @error('content')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror

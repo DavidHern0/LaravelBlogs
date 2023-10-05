@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="content">{{ __('Content') }}:</label>
-                                <textarea name="content" id="content" class="form-control" placeholder="{{ __('Content') }}" required></textarea>
+                                <textarea class="ckeditor form-control" name="content" id="content" placeholder="{{ __('Content') }}" required></textarea>
                                 @error('content')
                                     <span class="error">{{ $message }}</span>
                                 @enderror
