@@ -42,4 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function viewedBlogs()
+    {
+        return $this->belongsToMany(Blog::class, 'user_blog_seen', 'user_id', 'blog_id')
+            ->withTimestamps();
+    }
 }

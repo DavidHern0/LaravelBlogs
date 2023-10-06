@@ -13,10 +13,17 @@ class Blog extends Model
         'user_id',
         'title',
         'content',
+        'url',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function viewers()
+    {
+        return self::belongsToMany(User::class, 'user_blog_seen', 'blog_id', 'user_id')
+            ->withTimestamps();
     }
 }

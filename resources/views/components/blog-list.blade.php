@@ -15,7 +15,7 @@
                             class="button button-show m-1" draggable="false">{{ __('Read more') }}</a>
                         <a href="{{ route('blog.edit', ['blog_url' => $blog->url]) }}"
                             class="button button-edit m-1" draggable="false">{{ __('Edit') }}</a>
-                        <form action="{{ route('blog.destroy', $blog->url) }}" method="POST"
+                        <form action="{{ route('blog.destroy', $blog->id) }}" method="POST"
                             onsubmit="return confirm(`{{ __('Are you sure you want to delete this blog?') }}`)">
                             @csrf
                             @method('DELETE')
@@ -26,6 +26,9 @@
                     <div class="d-flex">
                         <a href="{{ route('blog.show', ['blog_url' => $blog->url]) }}"
                             class="button button-show m-1" draggable="false">{{ __('Read more') }}</a>
+                            @if (auth()->check() && auth()->user()->viewedBlogs->contains($blog))
+                            <img src="images/seen_icon.png" width=35 alt={{__('You have read this blog')}} draggable="false"/>
+                        @endif
                     </div>
                 @endif
             </div>

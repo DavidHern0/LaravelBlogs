@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\Blog;
+use App\Models\User;
 
 class BlogController extends Controller
 {
@@ -39,12 +40,20 @@ class BlogController extends Controller
     public function show($blog_url)
     {
         $blog = Blog::where('url', $blog_url)->first();
+    
         if ($blog) {
+            if (auth()->check()) {
+                $user = User::find(auth()->id());
+                if (!$user->viewedBlogs->contains($blog)) {
+                    $user->viewedBlogs()->attach($blog->id);
+                }
+            }
             return view('blog.show', compact('blog'));
         } else {
             abort(404, __('Blog not found.'));
         }
     }
+    
 
     public function store(Request $request)
     {
@@ -53,7 +62,7 @@ class BlogController extends Controller
                 'title' => 'required|max:255',
                 'content' => 'required|max:1000',
             ]);
-
+            
             $blog = Blog::create([
                 'user_id' => auth()->id(),
                 'title' => $validatedData['title'],
@@ -61,7 +70,7 @@ class BlogController extends Controller
                 'url' => $this->getBlogUrl($validatedData['title'])
             ]);
 
-            return redirect()->route('blog.show', ['id' => $blog->id])->with('success', __('Blog created successfully.'));
+            return redirect()->route('blog.show', ['blog_url' => $blog->url])->with('success', __('Blog created successfully.'));
         } catch (\Exception $e) {
             Log::error(__('Failed to create a blog post.'), ["error" => $e->getMessage()]);
         }
