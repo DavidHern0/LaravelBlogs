@@ -31,11 +31,12 @@ body {
     border: #002037 2px solid;
     border-radius: 0 8px 8px 0;
     text-decoration: none;
-    margin-right: 20px;
     transition: 0.15s;
+    margin-right: 0;
 }
 
-.button:hover {
+.button:hover,
+.button-search:hover {
     opacity: 0.8;
 }
 
@@ -67,4 +68,23 @@ body {
 .pagination_div {
     display: flex;
     flex-direction: row-reverse;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.blog-content img {
+    width: auto;
+}
+
+@media (max-width: 767px) {
+    .blog-content img {
+        width: 100%;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

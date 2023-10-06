@@ -1,5 +1,5 @@
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Open Sans'
 }
 
 .navbar-nav li.nav-item {
@@ -25,7 +25,18 @@ body {
     transition: 0.15s;
 }
 
-.button:hover {
+.button-search {
+    padding: 4px 4px;
+    background-color: orange;
+    border: #002037 2px solid;
+    border-radius: 0 8px 8px 0;
+    text-decoration: none;
+    transition: 0.15s;
+    margin-right: 0;
+}
+
+.button:hover,
+.button-search:hover {
     opacity: 0.8;
 }
 
@@ -57,4 +68,23 @@ body {
 .pagination_div {
     display: flex;
     flex-direction: row-reverse;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.blog-content img {
+    width: auto;
+}
+
+@media (max-width: 767px) {
+    .blog-content img {
+        width: 100%;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

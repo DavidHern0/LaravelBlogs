@@ -12,58 +12,74 @@
 </head>
 
 <body>
-    <header class="navbar navbar-expand navbar-dark d-flex justify-content-around align-items-baseline">
-        <h1><a class="navbar-brand text-decoration-none" href="/">{{ __('LaravelBlogs') }}</a></h1>
-        <form class="form-inline" action="{{ route('blog.search') }}" method="GET">
-            <div class="input-group">
-                <input class="form-control" type="search" placeholder={{__('Search...')}} aria-label={{__('Search...')}} name="search" id="search">
-                <div class="input-group-append">
-                    <button class="button-search" type="submit">
-                        <img src="../images/searching_icon.svg" width="35">
-                    </button>
-                </div>
-            </div>
-        </form>
-        <ul class="navbar-nav">
-            @if (auth()->check())
-                <li class="nav-item dropdown">
-                    <a class="nav-link btn btn-link text-decoration-none dropdown-toggle" href="#"
-                        id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        {{ auth()->user()->name }}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('blog.create') }}">{{ __('Create new blog') }}</a>
-                        <a class="dropdown-item" href="{{ route('home.index') }}">{{ __('My blogs') }}</a>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button class="dropdown-item" type="submit">{{ __('Logout') }}</button>
-                        </form>
+    <header class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand text-decoration-none" href="/">{{ __('LaravelBlogs') }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <form class="form-inline my-2 my-lg-0 mb-3 mb-lg-0" action="{{ route('blog.search') }}" method="GET">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="{{ __('Search...') }}"
+                            aria-label="{{ __('Search...') }}" name="search" id="search">
+                        <div class="input-group-append">
+                            <button class="button button-search" type="submit">
+                                <img src="/images/searching_icon.svg" width="35" draggable="false">
+                            </button>
+                        </div>
                     </div>
-                </li>
-            @else
-                <li class="nav-item">
-                    <a class="nav-link btn btn-link text-decoration-none"
-                        href="{{ route('login.index') }}">{{ __('Login') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-link text-decoration-none"
-                        href="{{ route('register.index') }}">{{ __('Register') }}</a>
-                </li>
-            @endif
-        </ul>
+                </form>
+                <ul class="navbar-nav">
+                    @if (auth()->check())
+                        <li class="nav-item dropdown">
+                            <a class="nav-link btn btn-link text-decoration-none dropdown-toggle" href="#"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false" draggable="false">
+                                {{ auth()->user()->name }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item"
+                                    href="{{ route('blog.create') }}">{{ __('Create new blog') }}</a>
+                                <a class="dropdown-item" href="{{ route('home.index') }}">{{ __('My blogs') }}</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">{{ __('Logout') }}</button>
+                                </form>
+                            </div>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-link text-decoration-none"
+                                href="{{ route('login.index') }}">{{ __('Login') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-link text-decoration-none"
+                                href="{{ route('register.index') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        </div>
     </header>
-    <nav class="navbar-expand d-flex justify-content-xl-center align-items-baseline mt-4">
-        <a class="button navbar-brand text-decoration-none mx-5" href="/">{{ __('Latest blogs') }}</a>
-        @if ($randomId)
-            <a href="{{ route('blog.show', ['id' => $randomId]) }}"
-                class="button navbar-brand text-decoration-none mx-5">{{ __('See random blog') }}</a>
-        @endif
-        @auth
-        <a class="button navbar-brand text-decoration-none mx-5"
-            href="{{ route('home.index') }}">{{ __('My blogs') }}</a>
-        @endauth
+
+    <nav class="container mt-4 text-center d-flex justify-content-center">
+        <div class="d-flex flex-md-row flex-column flex-wrap align-content-center">
+            <a class="button text-decoration-none text-white mb-2" href="/"
+                draggable="false">{{ __('Latest blogs') }}</a>
+            @if ($randomId)
+                <a href="{{ route('blog.show', ['id' => $randomId]) }}"
+                    class="button text-decoration-none text-white mb-2"
+                    draggable="false">{{ __('See random blog') }}</a>
+            @endif
+            @auth
+                <a class="button text-decoration-none text-white mb-2" href="{{ route('home.index') }}"
+                    draggable="false">{{ __('My blogs') }}</a>
+            @endauth
+        </div>
     </nav>
+
     <main class="container mt-4">
         @yield('content')
     </main>
