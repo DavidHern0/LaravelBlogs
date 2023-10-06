@@ -11,11 +11,11 @@
                 </p>
                 @if ($blog->user_id === auth()->id())
                     <div class="d-flex flex-wrap justify-content-md-start justify-content-center">
-                        <a href="{{ route('blog.show', ['id' => $blog->id]) }}"
+                        <a href="{{ route('blog.show', ['blog_url' => $blog->url]) }}"
                             class="button button-show m-1" draggable="false">{{ __('Read more') }}</a>
-                        <a href="{{ route('blog.edit', ['id' => $blog->id]) }}"
+                        <a href="{{ route('blog.edit', ['blog_url' => $blog->url]) }}"
                             class="button button-edit m-1" draggable="false">{{ __('Edit') }}</a>
-                        <form action="{{ route('blog.destroy', $blog->id) }}" method="POST"
+                        <form action="{{ route('blog.destroy', $blog->url) }}" method="POST"
                             onsubmit="return confirm(`{{ __('Are you sure you want to delete this blog?') }}`)">
                             @csrf
                             @method('DELETE')
@@ -24,7 +24,7 @@
                     </div>
                 @else
                     <div class="d-flex">
-                        <a href="{{ route('blog.show', ['id' => $blog->id]) }}"
+                        <a href="{{ route('blog.show', ['blog_url' => $blog->url]) }}"
                             class="button button-show m-1" draggable="false">{{ __('Read more') }}</a>
                     </div>
                 @endif

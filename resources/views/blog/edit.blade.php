@@ -8,7 +8,7 @@
             <div class="col-md-12 px-0">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('blog.update', ['id' => $blog->id]) }}">
+                        <form method="POST" action="{{ route('blog.update', ['blog_url' => $blog->url]) }}">
                             @csrf
                             @method('PUT')
                             <h1 class="mb-4">{{ __('Edit') . ': ' . $blog->title }}</h1>

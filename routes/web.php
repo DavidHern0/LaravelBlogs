@@ -21,10 +21,10 @@ use App\Http\Controllers\BlogController;
 Route::prefix('blog')->group(function () {
     Route::get('/create', [BlogController::class, 'create'])->name('blog.create');
     Route::post('/store', [BlogController::class, 'store'])->name('blog.store');
-    Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
-    Route::put('/{id}/update', [BlogController::class, 'update'])->name('blog.update');
-    Route::get('/{id}', [BlogController::class, 'show'])->name('blog.show');
-    Route::delete('/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+    Route::get('/{blog_url}/edit', [BlogController::class, 'edit'])->name('blog.edit');
+    Route::put('/{blog_url}/update', [BlogController::class, 'update'])->name('blog.update');
+    Route::get('/{blog_url}', [BlogController::class, 'show'])->name('blog.show');
+    Route::delete('/{blog_url}', [BlogController::class, 'destroy'])->name('blog.destroy');
 });
 Route::get('/search', [BlogController::class, 'search'])->name('blog.search');
 

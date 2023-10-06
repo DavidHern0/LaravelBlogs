@@ -5,10 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use App\Models\Blog;
 
 class BlogController extends Controller
 {
+    public function getBlogUrl($title) {
+        $sanitizedTitle = Str::slug($title);
+        $code = uniqid();
+        $url = $sanitizedTitle . '-' . $code;
+
+        return $url;
+    }
+
     public function create()
     {
         if (auth()->user()) {
@@ -27,9 +36,9 @@ class BlogController extends Controller
         return view('blog.edit', compact('blog'));
     }
 
-    public function show($id)
+    public function show($blog_url)
     {
-        $blog = Blog::find($id);
+        $blog = Blog::where('url', $blog_url)->first();
         if ($blog) {
             return view('blog.show', compact('blog'));
         } else {
@@ -44,11 +53,12 @@ class BlogController extends Controller
                 'title' => 'required|max:255',
                 'content' => 'required|max:1000',
             ]);
-            LOG::error($request);
+
             $blog = Blog::create([
                 'user_id' => auth()->id(),
                 'title' => $validatedData['title'],
-                'content' => $validatedData['content']
+                'content' => $validatedData['content'],
+                'url' => $this->getBlogUrl($validatedData['title'])
             ]);
 
             return redirect()->route('blog.show', ['id' => $blog->id])->with('success', __('Blog created successfully.'));
@@ -71,6 +81,7 @@ class BlogController extends Controller
 
             $blog->title = $validatedData['title'];
             $blog->content = $validatedData['content'];
+            $blog->url = $this->getBlogUrl($validatedData['title']);
             $blog->save();
 
             return redirect()->route('blog.show', ['id' => $blog->id])->with('success', __('Blog updated successfully.'));

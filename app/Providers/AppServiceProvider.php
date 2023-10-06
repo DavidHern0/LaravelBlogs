@@ -26,9 +26,9 @@ class AppServiceProvider extends ServiceProvider
 
         $randomBlog = Blog::inRandomOrder()->first();
         if ($randomBlog) {
-            View::share('randomId', $randomBlog);
+            View::share('randomUrl', $randomBlog->url);
         } else {
-            View::share('randomId', null);
+            View::share('randomUrl', null);
         }
     }
 }

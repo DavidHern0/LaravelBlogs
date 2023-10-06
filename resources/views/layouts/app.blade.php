@@ -68,8 +68,8 @@
         <div class="d-flex flex-md-row flex-column flex-wrap align-content-center">
             <a class="button text-decoration-none text-white mb-2" href="/"
                 draggable="false">{{ __('Latest blogs') }}</a>
-            @if ($randomId)
-                <a href="{{ route('blog.show', ['id' => $randomId]) }}"
+            @if ($randomUrl)
+                <a href="{{ route('blog.show', ['blog_url' => $randomUrl]) }}"
                     class="button text-decoration-none text-white mb-2"
                     draggable="false">{{ __('See random blog') }}</a>
             @endif
