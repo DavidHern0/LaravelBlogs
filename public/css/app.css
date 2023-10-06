@@ -78,6 +78,11 @@ body {
     width: auto;
 }
 
+.hover-seen:hover {
+    cursor: pointer;
+    filter: invert(6%) sepia(80%) saturate(5662%) hue-rotate(357deg) brightness(133%) contrast(109%);
+}
+
 @media (max-width: 767px) {
     .blog-content img {
         width: 100%;

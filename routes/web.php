@@ -28,6 +28,7 @@ Route::prefix('blog')->group(function () {
 });
 Route::get('/search', [BlogController::class, 'search'])->name('blog.search');
 
+Route::post('/change-seen-value/{id}', [BlogController::class, 'deleteSeen'])->name('blog.deleteSeen');
 
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');

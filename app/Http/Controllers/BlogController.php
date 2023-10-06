@@ -11,7 +11,8 @@ use App\Models\User;
 
 class BlogController extends Controller
 {
-    public function getBlogUrl($title) {
+    public function getBlogUrl($title)
+    {
         $sanitizedTitle = Str::slug($title);
         $code = uniqid();
         $url = $sanitizedTitle . '-' . $code;
@@ -28,9 +29,9 @@ class BlogController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit($blog_url)
     {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::where('url', $blog_url)->first();
         if ($blog->user_id !== auth()->id()) {
             abort(403, __('You do not have permission to edit this blog post.'));
         }
@@ -40,7 +41,7 @@ class BlogController extends Controller
     public function show($blog_url)
     {
         $blog = Blog::where('url', $blog_url)->first();
-    
+
         if ($blog) {
             if (auth()->check()) {
                 $user = User::find(auth()->id());
@@ -53,16 +54,16 @@ class BlogController extends Controller
             abort(404, __('Blog not found.'));
         }
     }
-    
+
 
     public function store(Request $request)
     {
         try {
             $validatedData = $request->validate([
                 'title' => 'required|max:255',
-                'content' => 'required|max:1000',
+                'content' => 'required',
             ]);
-            
+
             $blog = Blog::create([
                 'user_id' => auth()->id(),
                 'title' => $validatedData['title'],
@@ -76,14 +77,14 @@ class BlogController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $blog_url)
     {
         try {
             $validatedData = $request->validate([
                 'title' => 'required|max:255',
                 'content' => 'required',
             ]);
-            $blog = Blog::findOrFail($id);
+            $blog = Blog::where('url', $blog_url)->first();
             if ($blog->user_id !== auth()->id()) {
                 abort(403, __('You do not have permission to edit this blog post.'));
             }
@@ -93,7 +94,7 @@ class BlogController extends Controller
             $blog->url = $this->getBlogUrl($validatedData['title']);
             $blog->save();
 
-            return redirect()->route('blog.show', ['id' => $blog->id])->with('success', __('Blog updated successfully.'));
+            return redirect()->route('blog.show', ['blog_url' => $blog->url])->with('success', __('Blog updated successfully.'));
         } catch (\Exception $e) {
             Log::error(__('Failed to update a blog post.'), ["error" => $e->getMessage()]);
         }
@@ -114,5 +115,21 @@ class BlogController extends Controller
             ->latest()
             ->paginate(5);
         return view('blog.search', ['blogs' => $blogs, 'search' => $search]);
+    }
+
+    public function deleteSeen($id)
+    {
+        $blog = Blog::find($id);
+        LOG::INFO("POG");
+        if ($blog) {
+            if (auth()->check()) {
+                $user = User::find(auth()->id());
+                if ($user->viewedBlogs->contains($blog)) {
+                $user->viewedBlogs()->detach($blog->id);
+                }
+            }
+        } else {
+            return response()->json(['message' => 'Blog not found'], 404);
+        }
     }
 }
