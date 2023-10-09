@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use App\Models\Blog;
 
@@ -23,12 +24,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
-
-        $randomBlog = Blog::inRandomOrder()->first();
-        if ($randomBlog) {
-            View::share('randomUrl', $randomBlog->url);
-        } else {
-            View::share('randomUrl', null);
+        if (Schema::hasTable('blogs')) {
+            $randomBlog =
+                Blog::inRandomOrder()->first();
+            if ($randomBlog) {
+                View::share('randomUrl', $randomBlog->url);
+            } else {
+                View::share('randomUrl', null);
+            }
         }
     }
 }
